@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using BankAccount.Services;
+using BankAccount.Domain;
 
 namespace BankAccount
 {
@@ -36,6 +38,7 @@ namespace BankAccount
                 .AddEntityFrameworkStores<DataContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IBankService, BankService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(x =>
             {
