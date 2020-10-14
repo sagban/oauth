@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 
-const CLIENT_ID = '<your Client ID>';
+const CLIENT_ID = '167408661522-5k2u0mhcvo9s1r7dgj56na5k9tfpddjg.apps.googleusercontent.com';
 
 
 class GoogleBtn extends Component {
@@ -14,10 +14,11 @@ class GoogleBtn extends Component {
       accessToken: ''
     };
 
-    this.login = this.login.bind(this);
-    this.handleLoginFailure = this.handleLoginFailure.bind(this);
-    this.logout = this.logout.bind(this);
-    this.handleLogoutFailure = this.handleLogoutFailure.bind(this);
+    // this.login = this.login.bind(this);
+    // this.handleLoginFailure = this.handleLoginFailure.bind(this);
+    // this.logout = this.logout.bind(this);
+    //  this.handleLogoutFailure = this.handleLogoutFailure.bind(this);
+     this.responseGoogle = this.responseGoogle.bind(this);
   }
 
   login (response) {
@@ -36,12 +37,8 @@ class GoogleBtn extends Component {
     }));
   }
 
-  handleLoginFailure (response) {
-    alert('Failed to log in')
-  }
-
-  handleLogoutFailure (response) {
-    alert('Failed to log out')
+  responseGoogle(response) {
+    console.log(response);
   }
 
   render() {
@@ -51,14 +48,14 @@ class GoogleBtn extends Component {
         <GoogleLogout
           clientId={ CLIENT_ID }
           buttonText='Logout'
-          onLogoutSuccess={ this.logout }
-          onFailure={ this.handleLogoutFailure }
+          onLogoutSuccess={ this.responseGoogle }
+          onFailure={ this.responseGoogle}
         >
         </GoogleLogout>: <GoogleLogin
           clientId={ CLIENT_ID }
           buttonText='Login'
-          onSuccess={ this.login }
-          onFailure={ this.handleLoginFailure }
+          onSuccess={ this.responseGoogle }
+          onFailure={ this.responseGoogle }
           cookiePolicy={ 'single_host_origin' }
           responseType='code,token'
         />
